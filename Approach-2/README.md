@@ -195,7 +195,7 @@
 ## Mermaid — all 12 sections with subsections
 
 ```mermaid
-graph TD
+graph RL
     root["Nextcloud Developer Manual<br/><i>Approach-2</i>"]
 
     root --> S1["1. Prologue"]
