@@ -1,12 +1,49 @@
-# Approach - 2
+# Nextcloud documentation restructure - Approach 2
 
-## Approach 2 — Tree Struct
+Prepared by Eeshaan Sawant for the Nextcloud Developer Relations challenge.
+
+## Summary - Approach 2
+
+## Current Structure
+
+For a detailed walkthrough of the current developer manual, including the flowchart, sidebar screenshots, and full hierarchy mapping — please refer to the [Approach-1 README](../Approach-1/README.md#current-structure). This document builds on the same analysis but proposes a different set of changes that solve a different problem than Approach 1.
+
+### Major issues to solve with the current structure
+
+#### 1. Digging Deeper section
+
+The "Digging Deeper" section contains over 40 pages covering a wide variety of topics. Among them are several that deserve much better discoverability, such as the REST API and JavaScript API references.
+
+The latest version (compared to older versions) does group these pages into meaningful categories, including a dedicated one for APIs. However, those API pages remain isolated from other API types like OCP and OCS, which live in entirely different sections.
+
+#### 2. API Documentation is scattered across multiple sections (common goal with Approach-1)
+
+Here's how the major API references are structured in the current manual:
+
+| API | Current location |
+| --- | --- |
+| **OCP** (PHP Public API) | Digging Deeper → APIs & Integration → API reference |
+| **OCS** (REST API) | Clients and Client APIs → OCS API |
+| **WebDAV** | Clients and Client APIs → WebDAV |
+| **REST API development** | Digging Deeper → APIs & Integration → REST APIs |
+| **JavaScript APIs** | Digging Deeper → APIs & Integration → JavaScript APIs |
+| **External API** | Server Development → External API |
+
+This layout causes many issues — for example, a developer needing OCP API + REST API finds them in two different top-level sections, and an external integration needing OCS + WebDAV may not look in "Clients and Client APIs" because the name implies it is for clients. The most prominent issue, however, is the lack of a unified API landing page. That is why, in the proposed structure, I have introduced a dedicated landing page that explains what each Nextcloud API is and what it can do, and then directs developers organically to the required documentation.
+
+I have also tried amalgamating most API references into the new "API reference" section (which you can see below), without losing the context, which will be the one of the main goals with this restructuring approach.
+
+#### 3. Duplicated content across sections
+
+Some topics are covered by more than one page in different sections. Rather than restructuring around this, I merged the overlapping pages and placed each in the section where it fits best.
+
+## New proposed structure
 
 ```md
  1. Prologue
     ├── Code of conduct
     ├── Help & communication
-    ├── Reporting bugs                         [RENAMED from "Bugtracker"]
+    ├── Reporting bugs
     └── Compatibility with app ecosystem
 
  2. Getting Started
@@ -14,11 +51,11 @@
     ├── Development environment
     └── Coding style & guidelines
 
- 3. Concepts                                   [RENAMED from "Basic Concepts"]
-    ├── Nextcloud architecture                 [MOVED FROM: Server Dev → Architecture]
-    ├── Filesystem API                         [MOVED FROM: Server Dev → Architecture subsection]
+ 3. Concepts
     ├── Request lifecycle
     ├── Routing
+    ├── Nextcloud architecture
+    ├── Filesystem API
     ├── Dependency injection
     ├── Controllers
     ├── Middlewares
@@ -31,13 +68,12 @@
     ├── Settings
     ├── Storage and database
     ├── Public share template
-    └── Testing PHP code                       [MERGED: Basic Concepts Testing
-                                                + Server Dev Unit Testing]
+    └── Testing PHP code
 
- 4. API Reference                              [NEW SECTION]
-    ├── API Overview                           [NEW page]
-    ├── OCP: PHP Public API                    [from: Digging Deeper → API reference]
-    ├── OCS: REST API                          [from: Clients & Client APIs → OCS]
+ 4. API Reference
+    ├── API Overview
+    ├── OCP: PHP Public API
+    ├── OCS: REST API
     │   ├── OCS overview & conventions
     │   ├── OpenAPI specification tutorial
     │   ├── Share API
@@ -51,7 +87,7 @@
     │   ├── Text-To-Image API
     │   ├── FullTextSearch Collections API
     │   └── Recommendations API
-    ├── WebDAV API                             [from: Clients & Client APIs → WebDAV]
+    ├── WebDAV API
     │   ├── Basic operations
     │   ├── File search (REPORT)
     │   ├── Trashbin
@@ -59,11 +95,11 @@
     │   ├── Chunked upload
     │   ├── Bulk upload
     │   └── Comments
-    ├── REST API Development                   [from: Digging Deeper → REST APIs]
-    ├── JavaScript APIs                        [from: Digging Deeper → JavaScript APIs]
-    └── External API                           [from: Server Development → External API]
+    ├── REST API Development
+    ├── JavaScript APIs
+    └── External API
 
- 5. App Development                            [+1 page added]
+ 5. App Development
     ├── Introduction
     ├── Tutorial
     ├── Bootstrapping
@@ -72,7 +108,7 @@
     ├── Dependency management
     ├── Extending the DAV server
     ├── Translation
-    └── Security guidelines                    [MOVED FROM: Prologue]
+    └── Security guidelines
 
  6. ExApp Development
     ├── Introduction
@@ -91,11 +127,11 @@
     ├── Release automation
     └── App upgrade guide
 
- 8. Server Development                         [TRIMMED]
+ 8. Server Development
     ├── Front-end code
     ├── Back-end code
     ├── Static analysis
-    └── Testing Integrations                   [RENAMED from "How to test..."]
+    └── Testing Integrations
         ├── Email sending
         ├── Redis / Redis Cluster
         ├── S3 object storage
@@ -105,8 +141,7 @@
         ├── OnlyOffice
         └── WebAuthn without SSL
 
- 9. Extending Nextcloud                        [RENAMED from "Digging Deeper",
-                                                minus API pages → API Reference]
+ 9. Extending Nextcloud
     ├── AI & Machine Learning
     │   ├── Task Processing
     │   ├── Context Chat
@@ -158,8 +193,7 @@
         ├── Talk Integration
         └── Web Host Metadata
 
-10. Design Guidelines                          [MERGED: Interface & Interaction Design
-                                                + HTML/CSS Guidelines]
+10. Design Guidelines
     ├── Introduction
     ├── Foundations
     ├── Layout
@@ -173,9 +207,7 @@
     ├── CSS
     └── Icons
 
-11. Client Development                         [RENAMED from "Clients and Client APIs",
-                                                + Desktop Clients absorbed,
-                                                minus OCS & WebDAV → API Reference]
+11. Client Development
     ├── General
     ├── Activity
     ├── Android library
@@ -183,7 +215,7 @@
     ├── Login Flow
     ├── Remote wipe
     ├── Client Integration
-    └── Building the desktop client            [MOVED FROM: Desktop Clients]
+    └── Building the desktop client
 
 12. Release Notes
     ├── Critical changes
@@ -192,7 +224,7 @@
     └── Previous release notes
 ```
 
-## Mermaid — all 12 sections with subsections
+## Mermaid chart - Proposed structure
 
 ```mermaid
 graph RL
@@ -220,10 +252,10 @@ graph RL
     S2 --> S2b["Development environment"]
     S2 --> S2c["Coding style & guidelines"]
 
-    S3 --> S3a["Nextcloud architecture"]
-    S3 --> S3b["Filesystem API"]
-    S3 --> S3c["Request lifecycle"]
-    S3 --> S3d["Routing"]
+    S3 --> S3a["Request lifecycle"]
+    S3 --> S3b["Routing"]
+    S3 --> S3c["Nextcloud architecture"]
+    S3 --> S3d["Filesystem API"]
     S3 --> S3e["Dependency injection"]
     S3 --> S3f["Controllers"]
     S3 --> S3g["Middlewares"]
@@ -310,3 +342,44 @@ graph RL
     S12 --> S12c["Deprecations"]
     S12 --> S12d["Previous release notes"]
 ```
+
+### Summary of changes from the current structure
+
+This approach is a lighter-touch restructuring than Approach 1 — it keeps the overall shape of the existing manual but applies targeted renames, merges, and moves to address the most painful navigation issues.
+
+#### Renames without changes
+
+- *Bugtracker* → **Reporting bugs**
+- *Basic Concepts* → **Concepts** (dropped "Basic"; the section covers core architecture, not just basics).
+- *Digging Deeper* → **Extending Nextcloud**
+- *Clients and Client APIs* → **Client Development**
+- *Interface & Interaction Design* + *HTML/CSS Guidelines* → **Design Guidelines** (single merged section).
+- *Server Development/How to test...* → **Testing Integrations**.
+
+#### New section
+
+- **API Reference** — a new top-level section that consolidates all API documentation (OCP, OCS, WebDAV, REST API Development, JavaScript APIs, External API) in one palce. Includes a new **API Overview** landing page, [similar to Approach-1](../Approach-1/README.md#4-api-reference).
+
+#### Moves
+
+- *Nextcloud architecture* and *Filesystem API* → moved from Server Development into **Concepts**.
+- *Security guidelines* → moved from Prologue into **App Development**; primarily addresses app authors.
+- *Building the desktop client* → moved from the *Desktop Clients* section into **Client Development**.
+- All API pages (OCP, OCS, WebDAV, REST API Development, JavaScript APIs, External API) → moved to the new **API Reference** section.
+
+Although this restructuring might look the same as before, and has roughly the same number of top-level sections (12), the API discoverability has been greatly improved, important concepts grouped together (either in the same section, or merged 2 pages into one), and several confusing names and texts have been made clearer.
+
+## Caveats
+
+Although this approach promises a minimal restructure and a simpler development curve, there are several limitations that follow:
+
+- 
+- 
+- 
+-
+
+## References
+
+- **Diátaxis Framework** — [diataxis.fr](https://diataxis.fr) — The separation of API Reference as a dedicated section follows the Diátaxis principle of keeping reference material (lookup) separate from tutorials and how-to guides.
+
+- **Stripe Documentation** — [docs.stripe.com](https://docs.stripe.com) — The API Overview landing page is inspired by Stripe's approach of routing developers by intent.

@@ -26,7 +26,7 @@ Here is what the side bar looks like from the landing page:
 
 ![Current Sidebar](./src/img/sidebar-current.png)
 
-### Major issues with the current structure
+### Major issues to solve with the current structure
 
 #### 1. Digging Deeper section
 
