@@ -308,6 +308,8 @@ graph LR
 
 While a restructuring of this scale would meaningfully improve Developer Experience and Contributor Onboarding, it would also demand a significant investment of development time and resources.
 
+This is one of several possible approaches. It might not neccessarily appeal to all. The full set of explorations, alternatives, and design iterations is available in this[Figma file](https://www.figma.com/design/M7lPr2RIACBSLeoHdsdhYd/Nextcloud-Developer-Manual?node-id=7-2&t=tM2i8wBM5NMcbRha-1).
+
 ## References
 
 The restructuring decisions in these proposals are informed and influenced by several documentation frameworks and real-world developer documentation examples that I have studied, built and/or actively use.
