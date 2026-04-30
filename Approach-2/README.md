@@ -11,7 +11,7 @@ Approach 2 takes a different path from Approach 1. Instead of major reconstructi
 This approach:
 
 - Isolates scattered pages and sub-sections related to APIs into a new section called "API Reference". This helps (and, in the future, will help) keep everything related to APIs in a single section. The "API Reference" is a top-level section, and also introduces a new page called 'API Overview'.
-- Renames Digging Deeper to "Extending Nextcloud", and the previously called "Basic Concepts" top-level section is now just "Concepts". Most pages and sub-sections remain the same. Content related to APIs is moved to "API Reference".
+- Renames Digging Deeper to "Extending Nextcloud", and the top-level section previously called "Basic Concepts" is now just "Concepts". Most pages and sub-sections remain the same. Content related to APIs is moved to "API Reference".
 - Isolates design and front-end styling, and bundles it under a single "Design Guidelines" section.
 
 ## Current Structure
@@ -41,13 +41,33 @@ Here's how the major API references are structured in the current manual:
 
 This layout causes many issues — for example, a developer needing OCP API + REST API finds them in two different top-level sections, and an external integration needing OCS + WebDAV may not look in "Clients and Client APIs" because the name implies it is for clients. The most prominent issue, however, is the lack of a unified API landing page. That is why, in the proposed structure, I have introduced a dedicated landing page that explains what each Nextcloud API is and what it can do, and then directs developers organically to the required documentation.
 
-I have also tried amalgamating most API references into the new "API reference" section (which you can see below), without losing the context, which is one of the main goals of this restructuring approach.
+I have also amalgamated most API references into the new "API Reference" section (which you can see below), without losing the context, which is one of the main goals of this restructuring approach.
 
 #### 3. Duplicated content across sections
 
 Some topics are covered by more than one page in different sections. Rather than restructuring around this, I merged the overlapping pages and placed each in the section where it fits best.
 
-## New proposed structure
+## Proposed top-level structure
+
+```mermaid
+graph LR
+    root["Nextcloud Developer Manual<br/><i>Approach-2</i>"]
+
+    root --> S1["1. Prologue"]
+    root --> S2["2. Getting Started"]
+    root --> S3["3. Concepts"]
+    root --> S4["4. API Reference"]
+    root --> S5["5. App Development"]
+    root --> S6["6. ExApp Development"]
+    root --> S7["7. App Publishing &<br/>Maintenance"]
+    root --> S8["8. Server Development"]
+    root --> S9["9. Extending Nextcloud"]
+    root --> S10["10. Design Guidelines"]
+    root --> S11["11. Client Development"]
+    root --> S12["12. Release Notes"]
+```
+
+## In-depth hierarchy of each section
 
 ```md
  1. Prologue
@@ -234,125 +254,6 @@ Some topics are covered by more than one page in different sections. Rather than
     └── Previous release notes
 ```
 
-## Mermaid chart - Proposed structure
-
-```mermaid
-graph RL
-    root["Nextcloud Developer Manual<br/><i>Approach-2</i>"]
-
-    root --> S1["1. Prologue"]
-    root --> S2["2. Getting Started"]
-    root --> S3["3. Concepts"]
-    root --> S4["4. API Reference"]
-    root --> S5["5. App Development"]
-    root --> S6["6. ExApp Development"]
-    root --> S7["7. App Publishing &<br/>Maintenance"]
-    root --> S8["8. Server Development"]
-    root --> S9["9. Extending Nextcloud"]
-    root --> S10["10. Design Guidelines"]
-    root --> S11["11. Client Development"]
-    root --> S12["12. Release Notes"]
-
-    S1 --> S1a["Code of conduct"]
-    S1 --> S1b["Help & communication"]
-    S1 --> S1c["Reporting bugs"]
-    S1 --> S1d["App ecosystem compatibility"]
-
-    S2 --> S2a["Development process"]
-    S2 --> S2b["Development environment"]
-    S2 --> S2c["Coding style & guidelines"]
-
-    S3 --> S3a["Request lifecycle"]
-    S3 --> S3b["Routing"]
-    S3 --> S3c["Nextcloud architecture"]
-    S3 --> S3d["Filesystem API"]
-    S3 --> S3e["Dependency injection"]
-    S3 --> S3f["Controllers"]
-    S3 --> S3g["Middlewares"]
-    S3 --> S3h["Events"]
-    S3 --> S3i["Front-end"]
-    S3 --> S3j["Translations"]
-    S3 --> S3k["Background jobs"]
-    S3 --> S3l["Caching"]
-    S3 --> S3m["Logging"]
-    S3 --> S3n["Settings"]
-    S3 --> S3o["Storage & database"]
-    S3 --> S3p["Public share template"]
-    S3 --> S3q["Testing PHP code"]
-
-    S4 --> S4a["API Overview"]
-    S4 --> S4b["OCP: PHP Public API"]
-    S4 --> S4c["OCS: REST API"]
-    S4 --> S4d["WebDAV API"]
-    S4 --> S4e["REST API Development"]
-    S4 --> S4f["JavaScript APIs"]
-    S4 --> S4g["External API"]
-
-    S5 --> S5a["Introduction"]
-    S5 --> S5b["Tutorial"]
-    S5 --> S5c["Bootstrapping"]
-    S5 --> S5d["App metadata"]
-    S5 --> S5e["Navigation & config"]
-    S5 --> S5f["Dependency management"]
-    S5 --> S5g["Extending the DAV server"]
-    S5 --> S5h["Translation"]
-    S5 --> S5i["Security guidelines"]
-
-    S6 --> S6a["Introduction"]
-    S6 --> S6b["Dev environment setup"]
-    S6 --> S6c["Development overview"]
-    S6 --> S6d["Technical details"]
-    S6 --> S6e["FAQ"]
-
-    S7 --> S7a["Maintainers"]
-    S7 --> S7b["Release process"]
-    S7 --> S7c["App Store publishing"]
-    S7 --> S7d["Monetization"]
-    S7 --> S7e["App Store rules"]
-    S7 --> S7f["Code signing"]
-    S7 --> S7g["Release automation"]
-    S7 --> S7h["Upgrade guide"]
-
-    S8 --> S8a["Front-end code"]
-    S8 --> S8b["Back-end code"]
-    S8 --> S8c["Static analysis"]
-    S8 --> S8d["Testing Integrations"]
-
-    S9 --> S9a["AI & Machine Learning"]
-    S9 --> S9b["Users & Authentication"]
-    S9 --> S9c["Groupware & Workflows"]
-    S9 --> S9d["Search & Discovery"]
-    S9 --> S9e["Development Tools"]
-    S9 --> S9f["Server Internals"]
-
-    S10 --> S10a["Introduction"]
-    S10 --> S10b["Foundations"]
-    S10 --> S10c["Layout"]
-    S10 --> S10d["Layout components"]
-    S10 --> S10e["Atomic components"]
-    S10 --> S10f["Navigation"]
-    S10 --> S10g["Main content"]
-    S10 --> S10h["Content list"]
-    S10 --> S10i["Popover menu"]
-    S10 --> S10j["HTML elements"]
-    S10 --> S10k["CSS"]
-    S10 --> S10l["Icons"]
-
-    S11 --> S11a["General"]
-    S11 --> S11b["Activity"]
-    S11 --> S11c["Android library"]
-    S11 --> S11d["Files"]
-    S11 --> S11e["Login Flow"]
-    S11 --> S11f["Remote wipe"]
-    S11 --> S11g["Client Integration"]
-    S11 --> S11h["Building desktop client"]
-
-    S12 --> S12a["Critical changes"]
-    S12 --> S12b["New in this release"]
-    S12 --> S12c["Deprecations"]
-    S12 --> S12d["Previous release notes"]
-```
-
 ### Summary of changes from the current structure
 
 This approach is a lighter-touch restructuring than Approach 1 — it keeps the overall shape of the existing manual but applies targeted renames, merges, and moves to address the most painful navigation issues.
@@ -366,9 +267,52 @@ This approach is a lighter-touch restructuring than Approach 1 — it keeps the 
 - *Interface & Interaction Design* + *HTML/CSS Guidelines* → **Design Guidelines** (single merged section).
 - *Server Development/How to test...* → **Testing Integrations**.
 
-#### New section
+Here is a Proof of Concept (POC) for how the sidebar will look:
+
+![Proposed Sidebar](./src/img/sidebar-proposed.png)
+
+#### New section (API Reference)
 
 - **API Reference** — a new top-level section that consolidates all API documentation (OCP, OCS, WebDAV, REST API Development, JavaScript APIs, External API) in one place. Includes a new **API Overview** landing page, [similar to Approach-1](../Approach-1/README.md#4-api-reference).
+
+Here is a flowchart to understand the API Reference structure better:
+
+```mermaid
+graph LR
+    S4["4. API Reference"] --> Overview["API Overview"]
+    S4 --> OCP["OCP: PHP Public API"]
+    S4 --> OCS["OCS: REST API"]
+    S4 --> WebDAV["WebDAV API"]
+    S4 --> REST["REST API Development"]
+    S4 --> JS["JavaScript APIs"]
+    S4 --> Ext["External API"]
+
+    OCS --> OCS1["OCS overview & conventions"]
+    OCS --> OCS2["OpenAPI tutorial"]
+    OCS --> OCS3["Share API"]
+    OCS --> OCS4["Sharee API"]
+    OCS --> OCS5["Status API"]
+    OCS --> OCS6["User Preferences API"]
+    OCS --> OCS7["Out-of-office API"]
+    OCS --> OCS8["TaskProcessing API"]
+    OCS --> OCS9["Translation API"]
+    OCS --> OCS10["TextProcessing API"]
+    OCS --> OCS11["Text-To-Image API"]
+    OCS --> OCS12["FullTextSearch Collections"]
+    OCS --> OCS13["Recommendations API"]
+
+    WebDAV --> W1["Basic operations"]
+    WebDAV --> W2["File search"]
+    WebDAV --> W3["Trashbin"]
+    WebDAV --> W4["File versions"]
+    WebDAV --> W5["Chunked upload"]
+    WebDAV --> W6["Bulk upload"]
+    WebDAV --> W7["Comments"]
+```
+
+Here is a POC of how the new landing page will look:
+
+![API Reference landing page](./src/img/api-landing-page.png)
 
 #### Moves
 
@@ -377,7 +321,10 @@ This approach is a lighter-touch restructuring than Approach 1 — it keeps the 
 - *Building the desktop client* → moved from the *Desktop Clients* section into **Client Development**.
 - All API pages (OCP, OCS, WebDAV, REST API Development, JavaScript APIs, External API) → moved to the new **API Reference** section.
 
-Although this restructuring might look the same as before, and has roughly the same number of top-level sections (12), the API discoverability has been greatly improved, important concepts grouped together (either in the same section, or merged 2 pages into one), and several confusing names and texts have been made clearer.
+Although this restructuring might look the same as before, and has roughly the same number of top-level sections (12), the API discoverability has been greatly improved, important concepts have been grouped together (either placed in the same section or merged from two pages into one), and several confusing names and texts have been made clearer.
+
+>**Note:**
+>All the Proof of Concept (POC) screenshots have been made using my personal fork of the Nextcloud/documentation repository. The changes are made with the help of GitHub Codespaces and GitHub Copilot. Please take a look at [the fork](https://github.com/eeshaanSA/nc-documentation/) for more details.
 
 ## Caveats
 
@@ -386,13 +333,13 @@ Although this approach promises a minimal restructure and a simpler development 
 - **Contributor welcoming and onboarding problem remains unsolved.** There is no clear layout for people looking for steps to contribute to the Nextcloud code. While it is generally assumed that such details are usually found in either the GitHub repo's README.md or CONTRIBUTING.md, having a dedicated section in the developer manual, or at least isolating current pages that talk about contributing (which are currently dispersed across "Prologue", "Getting Started", etc), into one section will help streamline the journey of developer looking for more details to contribute to Nextcloud code.
 - **Concepts of "App development" are also dispersed across multiple sub-sections** in "Getting Started" and these can potentially be put under one section, so everything related to App development can be found under a single section.
 
-Overall, while this restructuring is easier, promises a good developer experience and can be delivered within a couple of weeks. The trade-offs above are relatively minor, but, depending on what a given reader is looking for, can hugely affect their documentation experience, and are worth acknowledging and fixing over a longer period of time.
+Overall, this restructuring is easier, promises a good developer experience, and can be delivered within a couple of weeks. The trade-offs above are relatively minor, but depending on what a given reader is looking for, they can significantly affect the documentation experience — and are worth acknowledging and fixing over time.
 
 ## Relationship to Approach 1
 
 While Approach 1 can be considered the end goal and an ideal long-term structure for the developer manual, Approach 2 can be the first step in achieving the hierarchy in Approach-1. It tackles three important problems to start with — API discoverability, the bloated "Digging Deeper" section, and the scattered design/front-end guidelines — while reorganizing only a minimal set of files (fewer than 15) overall to drastically improve the developer experience.
 
-Approach-2, if adopted as the first step in improving the overall structure of the developer manual — will ensure minimal rework, and will preserve future efforts. Any subsequent migration toward Approach-1 (or another target structure) will build on this foundation rather than discarding it completely or redoing it from scratch.
+Approach-2, if adopted as the first step in improving the overall structure of the developer manual, will ensure minimal rework and will preserve any work done toward future migrations. Any subsequent migration toward Approach-1 (or another target structure) will build on this foundation rather than discarding it completely or redoing it from scratch.
 
 ## References
 
