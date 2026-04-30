@@ -4,6 +4,16 @@ Prepared by Eeshaan Sawant for the Nextcloud Developer Relations challenge.
 
 ## Summary - Approach 2
 
+[The Nextcloud Developer Manual](https://docs.nextcloud.com/server/latest/developer_manual/) has grown organically over time, as engineers added and updated content. While the content is technically strong, some structural issues make it harder to find things, especially the API documentation. Navigation to and through some other sections can also be difficult for many audiences, including newer developers and designers.
+
+Approach 2 takes a different path from Approach 1. Instead of major reconstruction of the developer manual, it focuses on solving the impactful problems with minimal changes to the current structure/hierarchy.
+
+This approach:
+
+- Isolates scattered pages and sub-sections related to APIs into a new section called "API Reference". This helps (and, in the future, will help) keep everything related to APIs in a single section. The "API Reference" is a top-level section, and also introduces a new page called 'API Overview'.
+- Renames Digging Deeper to "Extending Nextcloud", and the previously called "Basic Concepts" top-level section is now just "Concepts". Most pages and sub-sections remain the same. Content related to APIs is moved to "API Reference".
+- Isolates design and front-end styling, and bundles it under a single "Design Guidelines" section.
+
 ## Current Structure
 
 For a detailed walkthrough of the current developer manual, including the flowchart, sidebar screenshots, and full hierarchy mapping — please refer to the [Approach-1 README](../Approach-1/README.md#current-structure). This document builds on the same analysis but proposes a different set of changes that solve a different problem than Approach 1.
@@ -12,7 +22,7 @@ For a detailed walkthrough of the current developer manual, including the flowch
 
 #### 1. Digging Deeper section
 
-The "Digging Deeper" section contains over 40 pages covering a wide variety of topics. Among them are several that deserve much better discoverability, such as the REST API and JavaScript API references.
+The "Digging Deeper" section contains over 40 pages covering a large array of topics. Among them are several that deserve much better discoverability, such as the REST API and JavaScript API references.
 
 The latest version (compared to older versions) does group these pages into meaningful categories, including a dedicated one for APIs. However, those API pages remain isolated from other API types like OCP and OCS, which live in entirely different sections.
 
@@ -31,7 +41,7 @@ Here's how the major API references are structured in the current manual:
 
 This layout causes many issues — for example, a developer needing OCP API + REST API finds them in two different top-level sections, and an external integration needing OCS + WebDAV may not look in "Clients and Client APIs" because the name implies it is for clients. The most prominent issue, however, is the lack of a unified API landing page. That is why, in the proposed structure, I have introduced a dedicated landing page that explains what each Nextcloud API is and what it can do, and then directs developers organically to the required documentation.
 
-I have also tried amalgamating most API references into the new "API reference" section (which you can see below), without losing the context, which will be the one of the main goals with this restructuring approach.
+I have also tried amalgamating most API references into the new "API reference" section (which you can see below), without losing the context, which is one of the main goals of this restructuring approach.
 
 #### 3. Duplicated content across sections
 
@@ -358,7 +368,7 @@ This approach is a lighter-touch restructuring than Approach 1 — it keeps the 
 
 #### New section
 
-- **API Reference** — a new top-level section that consolidates all API documentation (OCP, OCS, WebDAV, REST API Development, JavaScript APIs, External API) in one palce. Includes a new **API Overview** landing page, [similar to Approach-1](../Approach-1/README.md#4-api-reference).
+- **API Reference** — a new top-level section that consolidates all API documentation (OCP, OCS, WebDAV, REST API Development, JavaScript APIs, External API) in one place. Includes a new **API Overview** landing page, [similar to Approach-1](../Approach-1/README.md#4-api-reference).
 
 #### Moves
 
@@ -373,10 +383,16 @@ Although this restructuring might look the same as before, and has roughly the s
 
 Although this approach promises a minimal restructure and a simpler development curve, there are several limitations that follow:
 
-- 
-- 
-- 
--
+- **Contributor welcoming and onboarding problem remains unsolved.** There is no clear layout for people looking for steps to contribute to the Nextcloud code. While it is generally assumed that such details are usually found in either the GitHub repo's README.md or CONTRIBUTING.md, having a dedicated section in the developer manual, or at least isolating current pages that talk about contributing (which are currently dispersed across "Prologue", "Getting Started", etc), into one section will help streamline the journey of developer looking for more details to contribute to Nextcloud code.
+- **Concepts of "App development" are also dispersed across multiple sub-sections** in "Getting Started" and these can potentially be put under one section, so everything related to App development can be found under a single section.
+
+Overall, while this restructuring is easier, promises a good developer experience and can be delivered within a couple of weeks. The trade-offs above are relatively minor, but, depending on what a given reader is looking for, can hugely affect their documentation experience, and are worth acknowledging and fixing over a longer period of time.
+
+## Relationship to Approach 1
+
+While Approach 1 can be considered the end goal and an ideal long-term structure for the developer manual, Approach 2 can be the first step in achieving the hierarchy in Approach-1. It tackles three important problems to start with — API discoverability, the bloated "Digging Deeper" section, and the scattered design/front-end guidelines — while reorganizing only a minimal set of files (fewer than 15) overall to drastically improve the developer experience.
+
+Approach-2, if adopted as the first step in improving the overall structure of the developer manual — will ensure minimal rework, and will preserve future efforts. Any subsequent migration toward Approach-1 (or another target structure) will build on this foundation rather than discarding it completely or redoing it from scratch.
 
 ## References
 
